@@ -13,18 +13,52 @@ Note: Consider only the US sightings stored in "sightings_us".
 
 '''
 
-#First, define a Python function that checks if a given duration (seconds) is "valid"
+# First, define a Python function that checks if a given duration (seconds) is "valid"
 import csv
 filepath = "ufo-sightings.csv"
+
+
 def is_valid_duration(duration_as_string):
-# your code here
+    # your code here
     duration = float(int(duration_as_string))
     sightings_us = []
-    with open(filepath, "r") as csvfile:
-        reader = csv.DictReader(csvfile)
-        time = float(int(reader["duration (seconds)"]))
-        sightings_us = [row for row in reader if row["country"] == "us"]
-        fball = [row for row in sightings_us if row["duration (seconds)"] > time and row["shape"] == "fireball"]
-        print(fball)
-        
+    fball = []
+
+    csvfile = open(filepath, "r")
+
+    reader = csv.DictReader(csvfile)
+
+    for row in reader:
+
+        shape = row["shape"]
+
+        if shape == "fireball":
+
+            fireballDuration = getFloat(row["duration (seconds)"])
+
+            if fireballDuration > duration:
+                fball.append(row)
+
+                # print("fireball", fireballDuration)
+
+    for row in fball:
+        print(row["datetime"], row["state"])
+
+    # reader
+
+    # time = float(int(reader["duration (seconds)"]))
+
+    # sightings_us = [row for row in reader if row["country"] == "us"]
+    # fball = [
+    #     row for row in sightings_us if row["duration (seconds)"] > time and row["shape"] == "fireball"]
+    # print(fball)
+
+
+def getFloat(duration):
+    try:
+        return float(duration)
+    except:
+        return float(int(duration))
+
+
 is_valid_duration("10")
