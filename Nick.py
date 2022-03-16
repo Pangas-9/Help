@@ -30,6 +30,11 @@ def is_valid_duration(duration_as_string):
 
     for row in reader:
 
+        if (row["country"]) == "us":
+            sightings_us.append(row)
+
+    for row in sightings_us:
+
         shape = row["shape"]
 
         if shape == "fireball":
@@ -43,8 +48,6 @@ def is_valid_duration(duration_as_string):
 
     for row in fball:
         print(row["datetime"], row["state"])
-
-    # reader
 
     # time = float(int(reader["duration (seconds)"]))
 
