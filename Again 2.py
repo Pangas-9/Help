@@ -1,13 +1,14 @@
+import pandas as pd
 import random
 random.seed(0)
-import pandas as pd
 
 xls = pd.ExcelFile('imdb.xlsx')
 df = xls.parse('imdb')
 df_directors = xls.parse('directors')
 df_countries = xls.parse('countries')
 
-df["movie_title"] = df["movie_title"].str.replace("Ê", "")df["movie_title"] = df["movie_title"].str.replace("Ê", "")
+df["movie_title"] = df["movie_title"].str.replace("Ê", "")
+df["movie_title"] = df["movie_title"].str.replace("Ê", "")
 
 """ Q4:
 Who is the director with the most movies? First get the number of movies per "director_name", then save the director's name
@@ -30,13 +31,13 @@ second = df["imdb_score"]
 print(second)
 all_movies_ratings"""
 
-#The part i commented above also doesnt work so I want to have a look as to why
+# The part i commented above also doesnt work so I want to have a look as to why
 
 # your code here
 rating = df["imdb_score"] > 8.3
 good_movie = df[rating]
-rand_int = randint(0, len(good_movie) - 1)
-rand_title = good_movie[rand_int : rand_int + 1]
+rand_int = random.randint(0, len(good_movie) - 1)
+rand_title = good_movie[rand_int: rand_int + 1]
 rand_title
 
-#Why is it giving me the same number repetedly?
+# Why is it giving me the same number repetedly?
