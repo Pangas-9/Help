@@ -1,4 +1,14 @@
+# your code here
+import csv
+sightings_us = []
+filepath = "ufo-sightings.csv"
+with open(filepath, "r") as csvfile:
+    reader = csv.DictReader(csvfile) 
+    sightings_us = [row for row in reader if row["country"] == "us"]
+
 #First, define a Python function that checks if a given duration (seconds) is "valid"
+
+
 def is_valid_duration(duration_as_string):
 # your code here
    
