@@ -7,6 +7,9 @@ df_directors = xls.parse('directors')
 df_countries = xls.parse('countries')
 df["movie_title"] = df["movie_title"].str.replace("Ê", "")
 
+df = pd.merge(left= df, right= df_countries, how= "inner", left_on= "country_id", right_on='id')
+df = pd.merge(left= df, right= df_directors, how= "inner", left_on= "director_id", right_on='id')
+
 
 """ Q4:
 Who is the director with the most movies? First get the number of movies per "director_name", then save the director's name
